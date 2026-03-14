@@ -1,0 +1,33 @@
+{
+  "universal_gate": [
+    "required_critical_metric_missing",
+    "fx_normalization_failed",
+    "required_axis_coverage_insufficient",
+    "model_insufficient_data",
+    "model_incompatible",
+    "template_mismatch",
+    "major_audit_going_concern_issue",
+    "major_accounting_quality_issue",
+    "repeated_or_material_filing_delay"
+  ],
+  "template_specific_gate": [
+    "short_term_liquidity_risk",
+    "interest_or_refinancing_failure_risk",
+    "extreme_dilution_risk",
+    "material_contingent_liability",
+    "material_regulatory_litigation_risk",
+    "bank_capital_failure",
+    "bank_asset_quality_failure",
+    "bank_funding_liquidity_failure",
+    "insurance_solvency_failure",
+    "insurance_reserve_failure",
+    "insurance_alm_failure",
+    "brokerage_regulatory_capital_failure",
+    "brokerage_pf_credit_trading_failure",
+    "reit_distribution_cashflow_mismatch",
+    "reit_refinancing_dscr_ltv_failure",
+    "holding_double_leverage_failure",
+    "holding_governance_failure",
+    "mixed_financial_group_material_subsidiary_gate_fail"
+  ]
+}

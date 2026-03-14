@@ -1,0 +1,90 @@
+{
+  "general_operating_company": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["growth_quality", "margin_quality", "capital_efficiency", "cash_conversion"],
+      "axis_2": ["competitive_durability", "management_capital_allocation", "financial_resilience", "business_external_risk"],
+      "axis_3": ["relative_valuation", "absolute_value", "implied_expectation"]
+    }
+  },
+  "cyclical_company": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["normalized_earning_power", "cost_position_asset_efficiency", "midcycle_cash_generation"],
+      "axis_2": ["downcycle_survivability", "financial_resilience", "capex_discipline", "commodity_cycle_risk"],
+      "axis_3": ["normalized_valuation", "balance_sheet_floor_value", "cycle_expectation_reflection"]
+    }
+  },
+  "commodity_energy_producer": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["asset_quality", "cost_curve_position", "normalized_cash_generation"],
+      "axis_2": ["reserve_durability", "balance_sheet_cycle_coverage", "hedge_policy_price_sensitivity"],
+      "axis_3": ["asset_value", "normalized_valuation", "cycle_expectation_reflection"]
+    }
+  },
+  "software_saas": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["growth_efficiency", "gross_profit_cash_quality", "unit_economics", "diluted_per_share_growth"],
+      "axis_2": ["recurring_revenue_retention_moat_proxy", "capital_allocation_sbc_control", "customer_product_concentration", "financial_resilience"],
+      "axis_3": ["relative_valuation", "absolute_value_support", "implied_expectation"]
+    }
+  },
+  "digital_platform_marketplace": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["gmv_growth_monetization", "take_rate_quality", "contribution_margin", "revenue_mix_efficiency"],
+      "axis_2": ["engagement_retention", "network_effect_proxy", "two_sided_market_stability", "regulation_competition_risk"],
+      "axis_3": ["relative_valuation", "implied_expectation", "monetization_maturity_adjustment"]
+    }
+  },
+  "regulated_utility_infrastructure": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["regulated_earning_power", "cash_flow_stability", "payout_capacity"],
+      "axis_2": ["regulatory_stability", "leverage_interest_burden_tolerance", "capex_recovery_visibility", "asset_base_stability"],
+      "axis_3": ["yield_relative_value", "regulated_asset_base_value", "rate_sensitivity_valuation"]
+    }
+  },
+  "bank": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["normalized_earning_power", "spread_quality", "operating_efficiency", "fee_diversification"],
+      "axis_2": ["capital_adequacy", "asset_quality", "funding_liquidity", "regulation_governance"],
+      "axis_3": ["pb_vs_roe", "dividend_sustainability", "relative_valuation"]
+    }
+  },
+  "insurance": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["underwriting_quality", "investment_income_quality", "normalized_roe", "expense_discipline"],
+      "axis_2": ["solvency", "reserve_adequacy", "alm_reinsurance_structure", "catastrophe_concentration_risk"],
+      "axis_3": ["pb_vs_roe", "normalized_value", "dividend_sustainability"]
+    }
+  },
+  "brokerage_asset_manager": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["fee_based_earnings_power", "normalized_roe_earnings", "revenue_diversification", "cost_efficiency"],
+      "axis_2": ["financial_resilience_liquidity", "pf_credit_proprietary_risk", "regulatory_capital_soundness", "governance_capital_allocation"],
+      "axis_3": ["pb_or_normalized_earnings", "dividend_sustainability", "relative_valuation"]
+    }
+  },
+  "reit_income_asset": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["affo_per_share", "noi_growth", "dividend_coverage", "occupancy_rent_trend"],
+      "axis_2": ["leverage_ltv", "interest_coverage_refinancing", "tenant_asset_diversification", "lease_quality_wale", "maintenance_capex_burden"],
+      "axis_3": ["p_affo", "nav_discount_premium", "yield_spread_caprate_value"]
+    }
+  },
+  "holding_company": {
+    "minimum_effective_component_coverage": {"axis_1": 0.5, "axis_2": 0.5, "axis_3": 0.5},
+    "components": {
+      "axis_1": ["nav_growth_power", "lookthrough_earnings", "upstream_dividend_capacity", "capital_reallocation_efficiency"],
+      "axis_2": ["governance_quality", "capital_allocation_quality", "holdco_leverage", "structural_complexity"],
+      "axis_3": ["nav_discount", "catalyst_probability", "relative_valuation"]
+    }
+  }
+}

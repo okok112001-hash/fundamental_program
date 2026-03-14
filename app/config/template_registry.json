@@ -1,0 +1,107 @@
+{
+  "version": "v1.4-final-crosscheck-complete",
+  "supported_scope": "corporate_listed_equities_only",
+  "templates": [
+    {
+      "id": "general_operating_company",
+      "weights": {
+        "profit": 40,
+        "durability": 35,
+        "price": 25
+      }
+    },
+    {
+      "id": "cyclical_company",
+      "weights": {
+        "profit": 35,
+        "durability": 40,
+        "price": 25
+      },
+      "states": [
+        "normal",
+        "depressed"
+      ]
+    },
+    {
+      "id": "commodity_energy_producer",
+      "weights": {
+        "profit": 30,
+        "durability": 45,
+        "price": 25
+      }
+    },
+    {
+      "id": "software_saas",
+      "weights": {
+        "profit": 40,
+        "durability": 35,
+        "price": 25
+      }
+    },
+    {
+      "id": "digital_platform_marketplace",
+      "weights": {
+        "profit": 35,
+        "durability": 40,
+        "price": 25
+      }
+    },
+    {
+      "id": "regulated_utility_infrastructure",
+      "weights": {
+        "profit": 30,
+        "durability": 50,
+        "price": 20
+      }
+    },
+    {
+      "id": "bank",
+      "weights": {
+        "profit": 35,
+        "durability": 45,
+        "price": 20
+      }
+    },
+    {
+      "id": "insurance",
+      "weights": {
+        "profit": 35,
+        "durability": 45,
+        "price": 20
+      }
+    },
+    {
+      "id": "brokerage_asset_manager",
+      "weights": {
+        "profit": 35,
+        "durability": 40,
+        "price": 25
+      },
+      "subtypes": [
+        "balance_sheet_intensive_brokerage",
+        "fee_based_asset_manager",
+        "mixed_brokerage_asset_manager"
+      ]
+    },
+    {
+      "id": "reit_income_asset",
+      "weights": {
+        "profit": 35,
+        "durability": 40,
+        "price": 25
+      }
+    },
+    {
+      "id": "holding_company",
+      "weights": {
+        "profit": 30,
+        "durability": 40,
+        "price": 30
+      }
+    }
+  ],
+  "non_scored_templates": [
+    "special_case_excluded_preprofit_biotech_eventdriven",
+    "unsupported_non_corporate_asset"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "status_gate_stage_matrix": {
+    "analyzed": [
+      "all_passed"
+    ],
+    "gate_fail": [
+      "universal_gate",
+      "template_specific_gate"
+    ],
+    "special_case_excluded": [
+      "universal_exclusion"
+    ],
+    "unsupported_asset": [
+      "unsupported_scope"
+    ]
+  },
+  "public_score_rules": {
+    "analyzed": {
+      "scores": "non_null"
+    },
+    "gate_fail": {
+      "scores": "null"
+    },
+    "special_case_excluded": {
+      "scores": "null"
+    },
+    "unsupported_asset": {
+      "scores": "null"
+    }
+  },
+  "confidence_rules": {
+    "analyzed": "non_null",
+    "gate_fail": "nullable_if_minimum_inputs_available",
+    "special_case_excluded": "null",
+    "unsupported_asset": "null"
+  },
+  "confidence_breakdown_rule": "confidence_score null <-> confidence_breakdown null"
+}
