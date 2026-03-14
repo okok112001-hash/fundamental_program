@@ -32,16 +32,7 @@
 
 ---
 
-## 3. 현재 실제 확인 상태
-- 실제 테스트 기준: **27 passed**
-- 최소 동작 API 있음
-- 최소 UI 있음
-- 템플릿 metric map 설정 파일 존재
-- adapter / routing / gate / scoring / explanation 골격 존재
-
----
-
-## 4. 핵심 설계 원칙
+## 3. 핵심 설계 원칙
 1. 공통 UI, 템플릿별 내부 계산식
 2. Gate가 점수보다 우선
 3. Hard Gate / Critical Flag / 일반 경고 구분
@@ -55,7 +46,7 @@
 
 ---
 
-## 5. 상태값과 핵심 출력 규칙
+## 4. 상태값과 핵심 출력 규칙
 
 ### 상태값
 - `analyzed`
@@ -85,7 +76,7 @@
 
 ---
 
-## 6. 템플릿 목록
+## 5. 템플릿 목록
 
 ### 점수화 템플릿 (11개)
 1. `general_operating_company`
@@ -106,7 +97,7 @@
 
 ---
 
-## 7. 라우팅 핵심 원칙
+## 6. 라우팅 핵심 원칙
 
 ### 기본 흐름
 - preliminary routing
@@ -128,7 +119,7 @@
 
 ---
 
-## 8. Gate 구조
+## 7. Gate 구조
 
 ### Universal Gate
 - 필수 데이터 부족
@@ -157,7 +148,7 @@
 
 ---
 
-## 9. 점수 구조
+## 8. 점수 구조
 
 4단계:
 1. metric
@@ -185,7 +176,7 @@
 
 ---
 
-## 10. 내부 표준 입력 객체(Standardized Input)
+## 9. 내부 표준 입력 객체(Standardized Input)
 모든 외부 데이터는 먼저 표준 입력 객체로 변환됩니다.
 
 구조:
@@ -204,7 +195,7 @@ metric availability 상태:
 
 ---
 
-## 11. FX / 통화 처리
+## 10. FX / 통화 처리
 사용 필드:
 - `price_currency`
 - `reporting_currency`
@@ -221,7 +212,7 @@ metric availability 상태:
 
 ---
 
-## 12. 현재 코드 구조 요약
+## 11. 현재 코드 구조 요약
 
 ### 루트
 - `README.md`
@@ -283,23 +274,7 @@ metric availability 상태:
 
 ---
 
-## 13. 현재 구현된 핵심
-- 출력 스키마 계약 검증
-- 상태/null 정책
-- preliminary routing + routing validation 골격
-- Gate 골격
-- scoring engine 골격
-- template metric map 로딩
-- provider adapter 초안 (`sec_companyfacts`, `opendart`, `polygon`)
-- explanation engine 초안
-- demo engine
-- 최소 UI (`/`, `/ui`)
-- API (`/health`, `/analysis/{ticker}`)
-- 테스트 세트 존재
-
----
-
-## 14. 절대 깨면 안 되는 것
+## 12. 절대 깨면 안 되는 것
 - `status != analyzed`일 때 점수 노출 금지
 - `special_case_excluded / unsupported_asset`에서 confidence null
 - `confidence_score ↔ confidence_breakdown` 동기화
@@ -312,7 +287,14 @@ metric availability 상태:
 
 ---
 
-## 15. 개발 환경 정보
+## 13. 개발 환경 정보
 - Python 3.1x (가상환경 venv 사용)
 - 주요 프레임워크: FastAPI, Pytest
 - Git 관리: 로컬 개발 시 항상 커밋 단위로 변경 사항 확인
+
+---
+
+## 14. 품질 관리 원칙
+- 모든 코드는 pytest를 통해 검증한다.
+- 개발 및 수정 전후로 테스트를 실행하여 기준선을 유지한다.
+- 의존성(라이브러리) 관리를 철저히 하여, 언제 어디서든 동일한 테스트 결과가 재현되도록 한다.
