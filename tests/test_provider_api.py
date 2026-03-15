@@ -61,6 +61,55 @@ def test_provider_analysis_reit_analyzed():
     assert data['analysis']['status'] == 'analyzed'
 
 
+def test_provider_analysis_saas_analyzed():
+    """연결 강화: adapter가 software_saas 메트릭을 채우면 pipeline→scoring으로 주입되어 analyzed + 점수 반환."""
+    payload = {
+        "security": {"ticker": "CRM", "name": "Salesforce", "asset_class": "equity", "price_currency": "USD", "reporting_currency": "USD"},
+        "classification": {"is_software_saas": True},
+        "market": {"price": 280.0, "market_cap": 280_000_000_000, "shares_outstanding": 1_000_000_000},
+        "financials": {
+            "revenue_ttm": 34_000_000_000,
+            "gross_profit_ttm": 24_000_000_000,
+            "operating_income_ttm": 5_000_000_000,
+            "cfo_ttm": 10_000_000_000,
+            "net_income_ttm": 4_000_000_000,
+            "equity_latest": 58_000_000_000,
+        },
+        "metadata": {},
+    }
+    r = client.post("/analysis/provider/sec_companyfacts", json=payload)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["classification"]["template_id"] == "software_saas"
+    assert data["analysis"]["status"] == "analyzed"
+    assert data["scores"]["display"] is not None
+    assert data["scores"]["display"]["axis_1"] is not None
+
+
+def test_provider_analysis_cyclical_analyzed():
+    """연결 강화: adapter가 cyclical_company 메트릭을 채우면 pipeline→scoring으로 주입되어 analyzed + 점수 반환."""
+    payload = {
+        "security": {"ticker": "CAT", "name": "Caterpillar", "asset_class": "equity", "price_currency": "USD", "reporting_currency": "USD"},
+        "classification": {"is_cyclical_company": True},
+        "market": {"price": 380.0, "market_cap": 190_000_000_000, "shares_outstanding": 500_000_000},
+        "financials": {
+            "revenue_ttm": 67_000_000_000,
+            "operating_income_ttm": 10_000_000_000,
+            "cfo_ttm": 12_000_000_000,
+            "net_income_ttm": 10_000_000_000,
+            "equity_latest": 19_000_000_000,
+        },
+        "metadata": {},
+    }
+    r = client.post("/analysis/provider/sec_companyfacts", json=payload)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["classification"]["template_id"] == "cyclical_company"
+    assert data["analysis"]["status"] == "analyzed"
+    assert data["scores"]["display"] is not None
+    assert data["scores"]["display"]["axis_1"] is not None
+
+
 def test_provider_unsupported_provider():
     r = client.post('/analysis/provider/unknown', json={})
     assert r.status_code == 400

@@ -298,3 +298,14 @@ metric availability 상태:
 - 모든 코드는 pytest를 통해 검증한다.
 - 개발 및 수정 전후로 테스트를 실행하여 기준선을 유지한다.
 - 의존성(라이브러리) 관리를 철저히 하여, 언제 어디서든 동일한 테스트 결과가 재현되도록 한다.
+
+---
+
+## 15. 향후 로드맵 (진행 예정 작업)
+이 목록은 프로젝트의 핵심 마일스톤입니다. AI는 작업 시작 전 항상 이 목록을 확인하고, 현재 완료된 항목을 제외한 최우선 과제를 스스로 선정하여 작업하십시오.
+
+1. **provider adapter 확장**: 실제 데이터 필드를 metrics에 매핑 (`metrics / availability / source_map` 채우기)
+2. **연결 강화**: adapter 데이터를 scoring engine에 주입 (`general / bank / reit / saas / cyclical` 우선)
+3. **품질 보강**: 설명(explanation) 엔진 로직 고도화 및 component 결과 반영
+4. **UI/API 마감**: 사용자 화면 및 API 최종 정리
+5. **테스트 확대**: provider 입력 기반 `analyzed / gate_fail` 케이스 확장
