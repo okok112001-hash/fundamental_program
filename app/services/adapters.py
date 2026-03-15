@@ -94,6 +94,54 @@ def _mk_reit_metrics(payload: Dict[str, Any]) -> Dict[str, float]:
     return out
 
 
+def _enrich_metadata(provider: str, payload: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Bring provider / FX / filing context into metadata when present in the raw payload.
+    This respects DATA_SOURCE_PLAN: always store provider name, retrieval timestamp,
+    currency, filing period, filing date, FX normalization method.
+    """
+    base = dict(payload.get("metadata", {}))
+
+    # Provider identifier
+    base.setdefault("provider", provider)
+
+    # Retrieval timestamp (if the upstream adapter already attached it)
+    if "retrieval_timestamp" not in base and "retrieval_timestamp" in payload:
+        base["retrieval_timestamp"] = payload["retrieval_timestamp"]
+
+    # Filing context
+    for key in ("filing_period", "filing_date"):
+        if key not in base and key in payload:
+            base[key] = payload[key]
+
+    # FX / currency context (if present at top-level or under security / market)
+    security = payload.get("security", {})
+    market = payload.get("market", {})
+
+    if "currency" not in base:
+        currency = security.get("price_currency") or security.get("reporting_currency") or market.get("currency")
+        if currency is not None:
+            base["currency"] = currency
+
+    fx_keys = (
+        "valuation_currency",
+        "fx_rate_applied",
+        "fx_rate_timestamp",
+        "fx_source",
+        "fx_normalization_method",
+    )
+    for key in fx_keys:
+        if key not in base:
+            if key in payload:
+                base[key] = payload[key]
+            elif key in security:
+                base[key] = security[key]
+            elif key in market:
+                base[key] = market[key]
+
+    return base
+
+
 def from_sec_companyfacts(payload: Dict[str, Any]) -> StandardizedInput:
     metrics = _mk_metrics_from_financials(payload)
     metrics.update(_mk_bank_metrics(payload))
@@ -106,13 +154,26 @@ def from_sec_companyfacts(payload: Dict[str, Any]) -> StandardizedInput:
         "market": payload.get("market", {}),
         "financials": payload.get("financials", {}),
         "derived": {"metrics": metrics, "availability": availability, "source_map": source_map},
-        "metadata": payload.get("metadata", {}),
+        "metadata": _enrich_metadata("sec_companyfacts", payload),
     }
     return normalize_external_payload(normalized)
 
 
 def from_opendart(payload: Dict[str, Any]) -> StandardizedInput:
-    return from_sec_companyfacts(payload)
+    metrics = _mk_metrics_from_financials(payload)
+    metrics.update(_mk_bank_metrics(payload))
+    metrics.update(_mk_reit_metrics(payload))
+    source_map = {k: "opendart" for k in metrics}
+    availability = {k: "observed" for k in metrics}
+    normalized = {
+        "security": payload.get("security", {}),
+        "classification": payload.get("classification", {}),
+        "market": payload.get("market", {}),
+        "financials": payload.get("financials", {}),
+        "derived": {"metrics": metrics, "availability": availability, "source_map": source_map},
+        "metadata": _enrich_metadata("opendart", payload),
+    }
+    return normalize_external_payload(normalized)
 
 
 def from_polygon(payload: Dict[str, Any]) -> StandardizedInput:
@@ -122,7 +183,7 @@ def from_polygon(payload: Dict[str, Any]) -> StandardizedInput:
         "market": payload.get("market", {}),
         "financials": payload.get("financials", {}),
         "derived": payload.get("derived", {"metrics": {}, "availability": {}, "source_map": {}}),
-        "metadata": payload.get("metadata", {}),
+        "metadata": _enrich_metadata("polygon", payload),
     }
     return normalize_external_payload(normalized)
 
